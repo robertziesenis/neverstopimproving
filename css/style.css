@@ -1,0 +1,47 @@
+/*Import Fonts*/
+
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+
+/* News Ticker */
+.news-container {
+    font-size: 36pt;
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+}
+
+.news-ticker-wrapper {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+}
+
+.news-ticker {
+    display: flex;
+    white-space: nowrap;
+    animation: scroll 360s linear infinite;
+}
+
+.news-ticker span {
+    padding: 0 5vw;
+}
+
+@keyframes scroll {
+    from {transform: translateX(0);}
+    to {transform: translateX(-50%);}
+}
