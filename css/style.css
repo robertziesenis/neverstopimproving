@@ -1,4 +1,8 @@
 /*Import Fonts*/
+@font-face {
+    font-family: "Times-New-Arial";
+    src: url("../fonts/TimesNewArialGX.ttf") format("truetype");
+}
 
 /* CSS Variables */
 /* COLORS */
@@ -18,7 +22,6 @@ html {
 }
 
 body {
-    font-family: serif;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -52,6 +55,8 @@ body {
 
 .news-ticker span {
     padding: 0 50vw;
+    font-family: "Times-New-Arial", serif;
+    font-variation-settings: "ital" 0, "srff" 100;
 }
 
 @keyframes scroll {

@@ -5,10 +5,15 @@ function setDaytimeBrightness() {
     const hours = time.getHours();
     const minutes = time.getMinutes();
     const totalMinutes = hours * 60 + minutes;
-    const totalMinutesAtNoon = 12 * 60; // 720 minutes
-    brightnessPercent = (totalMinutes / totalMinutesAtNoon) * 100;
-    // Ensure it doesn't exceed 100, though at 12:00 it's exactly 100
-    if (brightnessPercent > 100) brightnessPercent = 100;
+    const totalMinutesInDay = 24 * 60; // 1440 minutes
+    const noonMinutes = 12 * 60; // 720 minutes
+
+    // Brightness increases from 0% at midnight to 100% at noon, then decreases back to 0% at midnight
+    if (totalMinutes <= noonMinutes) {
+        brightnessPercent = (totalMinutes / noonMinutes) * 100;
+    } else {
+        brightnessPercent = ((totalMinutesInDay - totalMinutes) / noonMinutes) * 100;
+    }
     console.log(`Brightness set to ${brightnessPercent.toFixed(2)}% at ${hours}:${minutes < 10 ? '0' : ''}${minutes}`);
 
     const root = document.documentElement;
