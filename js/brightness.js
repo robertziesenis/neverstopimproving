@@ -17,11 +17,9 @@ function setDaytimeBrightness() {
     console.log(`Brightness set to ${brightnessPercent.toFixed(2)}% at ${hours}:${minutes < 10 ? '0' : ''}${minutes}`);
 
     const root = document.documentElement;
-    const backgroundGrey = Math.round((brightnessPercent / 100) * 255);
-    const textGrey = Math.round((1 - brightnessPercent / 100) * 255);
+    const hueValue = Math.round((brightnessPercent / 100) * 360);
 
-    root.style.setProperty('--background-color', `rgb(${backgroundGrey}, ${backgroundGrey}, ${backgroundGrey})`);
-    root.style.setProperty('--text-color', `rgb(${textGrey}, ${textGrey}, ${textGrey})`);
+    document.body.style.filter = `hue-rotate(${hueValue}deg)`;
 }
 
 // For Testing: Simulate brightness changes over a 1-minute cycle
@@ -43,12 +41,10 @@ function setTestBrightness() {
     console.log(`Test brightness: ${brightnessPercent.toFixed(2)}%`);
 
     const root = document.documentElement;
-    const backgroundGrey = Math.round((brightnessPercent / 100) * 255);
-    const textGrey = Math.round((1 - brightnessPercent / 100) * 255);
+    const hueValue = Math.round((brightnessPercent / 100) * 360);
 
-    root.style.setProperty('--background-color', `rgb(${backgroundGrey}, ${backgroundGrey}, ${backgroundGrey})`);
-    root.style.setProperty('--text-color', `rgb(${textGrey}, ${textGrey}, ${textGrey})`);
+    document.body.style.filter = `hue-rotate(${hueValue}deg)`;
 }
 
 setDaytimeBrightness();
-setInterval(setDaytimeBrightness, 60000); // Update every 60 seconds for smooth transitions
+setInterval(setDaytimeBrightness, 10); // Update every 60 seconds for smooth transitions
