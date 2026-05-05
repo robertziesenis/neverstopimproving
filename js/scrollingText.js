@@ -3,7 +3,7 @@
 
     // CORS-Proxy-URL (alternative proxies)
     const proxyUrl = 'https://corsproxy.io/?';
-    const redditUrl = 'https://www.reddit.com/r/selfimprovement/new.json?limit=40';
+    const redditUrl = 'https://www.reddit.com/r/selfimprovement/new.json?limit=100';
 
     // Funktion zum Abrufen der Posts
     async function fetchPosts() {
