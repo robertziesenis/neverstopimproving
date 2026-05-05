@@ -3,7 +3,7 @@
 
     // CORS-Proxy-URL (alternative proxies)
     const proxyUrl = 'https://corsproxy.io/?';
-    const redditUrl = 'https://www.reddit.com/r/selfimprovement/new.json?limit=40';
+    const redditUrl = 'https://www.reddit.com/r/selfimprovement/new.json?limit=100';
 
     // Funktion zum Abrufen der Posts
     async function fetchPosts() {
@@ -38,19 +38,18 @@
     function updateNews() {
         const newsTicker = document.getElementById("news-ticker");
         const postItems = postsList.map(news => `<span>${news.title}</span>`).join("");
-        console.log(postItems);
         
         // Duplicate content to ensure smooth looping
         newsTicker.innerHTML = postItems + postItems;
+
+        // Set random font-variation-settings for each span
+        const spans = newsTicker.querySelectorAll("span");
+        spans.forEach(span => {
+            const randomSrff = Math.random() * 100; // Slant from 0 to 100
+            span.style.fontVariationSettings = `"ital" 0, "srff" ${randomSrff.toFixed(2)}`;
+        });
     }
 
-    // Hilfsfunktion: HTML-Escape (verhindert XSS)
-    // function escapeHtml(text) {
-    //   const div = document.createElement('div');
-    //   div.textContent = text;
-    //   return div.innerHTML;
-    // }
-
-    // Alle 30 Sekunden abfragen
+    // Alle 60 Sekunden abfragen
     fetchPosts(); // Initialer Aufruf
-    setInterval(fetchPosts, 30000);
+    setInterval(fetchPosts, 60000);
