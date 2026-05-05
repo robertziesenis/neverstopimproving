@@ -1,29 +1,17 @@
 // Array für die Posts
     const postsList = [];
 
-    // CORS-Proxy-URL (alternative proxies)
-    const proxyUrl = 'https://corsproxy.io/?';
-    const redditUrl = 'https://www.reddit.com/r/selfimprovement/new.json?limit=100';
-
-    // Funktion zum Abrufen der Posts
-    async function fetchPosts() {
+    // Funktion zum Laden der Posts aus der lokalen JSON-Datei
+    async function loadPosts() {
       try {
-        const response = await fetch(proxyUrl + encodeURIComponent(redditUrl));
-        if (!response.ok) throw new Error('Netzwerkfehler');
-        const data = await response.json();
+        const response = await fetch('./posts.json');
+        if (!response.ok) throw new Error('Fehler beim Laden der Posts');
+        const posts = await response.json();
 
-        // Posts extrahieren
-        const newPosts = data.data.children.map(child => ({
-          title: child.data.title,
-          author: child.data.author,
-          url: `https://reddit.com${child.data.permalink}`,
-          created: new Date(child.data.created_utc * 1000).toLocaleString('de-DE')
-        }));
-
-        // Nur neue Posts hinzufügen (Vermeidung von Duplikaten)
-        newPosts.forEach(newPost => {
-          if (!postsList.some(existing => existing.title === newPost.title)) {
-            postsList.push(newPost);
+        // Posts zur Liste hinzufügen
+        posts.forEach(post => {
+          if (!postsList.some(existing => existing.title === post.title)) {
+            postsList.push(post);
           }
         });
 
@@ -31,7 +19,7 @@
         updateNews();
       } catch (error) {
         document.getElementById('error').textContent = `Fehler: ${error.message}`;
-        console.error('Fehler beim Abrufen der Posts:', error);
+        console.error('Fehler beim Laden der Posts:', error);
       }
     }
 
@@ -50,6 +38,6 @@
         // });
     }
 
-    // Alle 60 Sekunden abfragen
-    fetchPosts(); // Initialer Aufruf
-    setInterval(fetchPosts, 60000);
+    // Posts laden und alle 60 Sekunden aktualisieren
+    loadPosts();
+    setInterval(loadPosts, 60000);
