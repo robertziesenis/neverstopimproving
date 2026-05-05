@@ -58,6 +58,7 @@ body {
     padding: 0 50vw;
     font-family: "Times-New-Arial", serif;
     font-variation-settings: "ital" 0, "srff" 100;
+    font-kerning: normal;
 }
 
 @keyframes scroll {
