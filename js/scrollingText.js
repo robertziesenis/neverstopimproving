@@ -43,11 +43,11 @@
         newsTicker.innerHTML = postItems + postItems;
 
         // Set random font-variation-settings for each span
-        const spans = newsTicker.querySelectorAll("span");
-        spans.forEach(span => {
-            const randomSrff = Math.random() * 100; // Slant from 0 to 100
-            span.style.fontVariationSettings = `"ital" 0, "srff" ${randomSrff.toFixed(2)}`;
-        });
+        // const spans = newsTicker.querySelectorAll("span");
+        // spans.forEach(span => {
+        //     const randomSrff = Math.random() * 100; // Slant from 0 to 100
+        //     span.style.fontVariationSettings = `"ital" 0, "srff" ${randomSrff.toFixed(2)}`;
+        // });
     }
 
     // Alle 60 Sekunden abfragen

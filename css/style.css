@@ -30,6 +30,7 @@ body {
     width: 100vw;
     background-color: var(--background-color);
     color: var(--text-color);
+    filter: hue-rotate(180deg);
 }
 
 
