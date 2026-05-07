@@ -1,12 +1,20 @@
 <?php
-// Run the Python script to update posts.json
-exec('python3 fetch-posts.py 2>&1', $output, $return_var);
+// Ensure the script runs in the project directory so relative paths resolve correctly.
+chdir(__DIR__);
 
-// Output the result for debugging
-if ($return_var === 0) {
-    echo "Posts updated successfully\n";
-} else {
-    echo "Error updating posts:\n";
-    echo implode("\n", $output);
-}
+$script = escapeshellarg(__DIR__ . '/fetch-posts.py');
+$cmd = '/usr/bin/env python3 ' . $script . ' 2>&1';
+exec($cmd, $output, $return_var);
+
+$logFile = __DIR__ . '/update.log';
+$logEntry = sprintf(
+    "%s | return=%d | cmd=%s\n%s\n\n",
+    date('Y-m-d H:i:s'),
+    $return_var,
+    $cmd,
+    implode("\n", $output)
+);
+file_put_contents($logFile, $logEntry, FILE_APPEND);
+
+// Silently complete without outputting anything
 ?>
