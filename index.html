@@ -1,21 +1,69 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Never Stop Improving</title>
-    <link rel="icon" type="image/png" href="./img/emoji-1f4b9.png">
-    <link rel="stylesheet" href="./css/style.css">
-</head>
-<body>
+    <link rel="icon" type="image/png" href="./img/emoji-1f4b9.png" />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
     <div class="news-container">
-        <div class="news-ticker-wrapper">
-            <div class="news-ticker" id="news-ticker"></div>
-        </div>
-        <div id="error" class="news-error"></div>
+      <div class="news-ticker-wrapper">
+        <div class="news-ticker" id="news-ticker"></div>
+      </div>
     </div>
 
-<script src="./js/scrollingText.js"></script>
-<script src="./js/brightness.js"></script>
-</body>
+    <aside class="sidebar-container" onclick="toggleSidebar()">
+      <div class="sidebar-content">
+        <section>
+          <h1>Never Stop Improving</h1>
+        </section>
+        <section>
+          <h2>Info</h2>
+          <p>
+            “Never Stop Improving” is an artistic project that continuously
+            displays new Reddit post titles on topics of self-improvement as a
+            never-ending ticker. The content ranges from constructive reflection
+            to a dangerous culture of self-optimization.
+          </p>
+        </section>
+        <section>
+          <h2>Content Note</h2>
+          <p>
+            All content on this website is retrieved live from
+            <a href="https://reddit.com">Reddit</a> and therefore may not be
+            subject to any separate content review beyond Reddit's own content
+            moderation. If you come across content that you find offensive or
+            inappropriate, please contact me at
+            <a href="mailto:hey@robertziesenis.xyz">hey@robertziesenis.xyz</a>
+          </p>
+        </section>
+        <section>
+          <h2>Imprint</h2>
+          <p>
+            Robert Ziesenis<br />
+            <a href="mailto:hey@robertziesenis.xyz">hey@robertziesenis.xyz</a>
+          </p>
+          <p>Feel free to contact me with feedback or questions.</p>
+          <p>
+            Developed at “Burg Giebichenstein Kunsthochschule Halle” in a course
+            by Lina Schwarzenberg and Markus Wachter.
+          </p>
+          <p>
+            Typeface:<br />
+            <span class="text-animation">Times New Arial</span> by<br />
+            <a href="https://liebermannkiepereddemann.de">
+              Liebermann Kiepe Reddemann.
+            </a>
+          </p>
+          <p id="current-year-copyright"></p>
+        </section>
+      </div>
+    </aside>
+
+    <script src="./js/scrollingText.js"></script>
+    <script src="./js/brightness.js"></script>
+    <script src="./js/sidebar.js"></script>
+  </body>
 </html>

@@ -1,83 +1,199 @@
 /*Import Fonts*/
 @font-face {
-    font-family: "Times-New-Arial";
-    src: url("../fonts/TimesNewArialGX.ttf") format("truetype");
+  font-family: "Times-New-Arial";
+  src: url("../fonts/TimesNewArialGX.ttf") format("truetype");
 }
 
 /* CSS Variables */
 /* COLORS */
 :root {
-    --background-color: rgb(255, 255, 255);
-    --text-color: rgb(0, 0, 0);
+  --background-color: rgb(255, 255, 255);
+  --text-color: rgb(0, 0, 0);
 }
 
 /* Reset CSS */
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+/* Typography */
+h1 {
+  font-family: "Times-New-Arial", serif;
+  font-variation-settings:
+    "ital" 0,
+    "srff" 5;
+  font-kerning: normal;
+  font-size: 36pt;
+  line-height: 0.9;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-family: "Times-New-Arial", serif;
+  font-variation-settings:
+    "ital" 0,
+    "srff" 5;
+  font-kerning: normal;
+  font-size: 24pt;
+  line-height: 0.9;
+  margin-bottom: 1rem;
+}
+
+p {
+  font-family: "Times-New-Arial", serif;
+  font-variation-settings:
+    "ital" 0,
+    "srff" 5;
+  font-kerning: normal;
+  font-size: 14pt;
+  line-height: 1;
+  margin-bottom: 1rem;
+  word-break: break-word;
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+/* General Styles */
 html {
-    background-color: var(--background-color);
+  background-color: var(--background-color);
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    filter: hue-rotate(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  filter: hue-rotate(180deg);
+  overflow: hidden;
 }
-
 
 /* News Ticker */
 .news-container {
-    font-size: 72pt;
-    width: 100%;
-    max-width: 100%;
-    position: relative;
+  font-size: 72pt;
+  width: 100%;
+  max-width: 100%;
+  position: relative;
 }
 
 .news-ticker-wrapper {
-    display: flex;
-    width: 100%;
-    overflow: hidden;
+  display: flex;
+  width: 100%;
+  overflow: hidden;
 }
 
 .news-ticker {
-    display: flex;
-    white-space: nowrap;
-    animation: scroll 1200s linear infinite;
+  display: flex;
+  white-space: nowrap;
+  animation: scroll 1200s linear infinite;
 }
 
 .news-ticker span {
-    padding: 0 50vw;
-    font-family: "Times-New-Arial", serif;
-    font-variation-settings: "ital" 0, "srff" 100;
-    font-kerning: normal;
+  padding: 0 50vw;
+  font-family: "Times-New-Arial", serif;
+  font-variation-settings:
+    "ital" 0,
+    "srff" 100;
+  font-kerning: normal;
 }
 
+/* Sidebar */
+.sidebar-container {
+  position: absolute;
+  top: 0;
+  left: 100vw;
+  width: 30rem;
+  height: 100vh;
+  max-height: 100vh;
+  background-color: var(--text-color);
+  color: var(--background-color);
+  transition: transform 0.3s ease-in-out;
+  padding: 2rem;
+}
 
+.sidebar-container::before {
+  content: attr(icon-data);
+  position: absolute;
+  top: 2rem;
+  left: -3rem;
+  width: 3rem;
+  height: 2rem;
+  background-color: var(--text-color);
+  color: var(--background-color);
+  border-radius: 2rem 0 0 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.sidebar-container.show {
+  transform: translateX(-30rem);
+}
+
+.sidebar-content {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.sidebar-content section p:last-of-type {
+  margin-bottom: 0;
+}
+
+.sidebar-content section:not(:first-of-type) {
+  padding: 2rem 0;
+  border-top: 2px dotted var(--background-color);
+}
+
+.text-animation {
+  animation: text-animation 3s ease-in-out infinite alternate;
+}
 
 /* CSS ANIMATIONS */
 @keyframes scroll {
-    from {
-        -moz-transform: translateX(0);
-        -webkit-transform: translateX(0);
-        transform: translateX(0);
-    }
-    to {
-        -webkit-transform: translateX(-50%);
-        -moz-transform: translateX(-50%);
-        transform: translateX(-50%);
-    }
+  from {
+    -moz-transform: translateX(0);
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  to {
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
 }
 
 @-webkit-keyframes scroll {
-    from {transform: translateX(0);}
-    to {transform: translateX(-50%);}
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes text-animation {
+  0% {
+    font-variation-settings:
+      "srff" 100,
+      "ital" 0;
+  }
+  100% {
+    font-variation-settings:
+      "srff" 0,
+      "ital" 0;
+  }
 }
